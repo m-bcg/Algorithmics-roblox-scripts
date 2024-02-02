@@ -1,0 +1,37 @@
+local textBox = script.Parent.TextBox
+local Frame = script.Parent
+local secretWord = "12358W"
+
+local colorNormal = Color3.new(1, 1, 1) 
+local colorWrong = Color3.new(1, 0, 0) 
+local colorCorrect = Color3.new(0, 1, 0)
+
+
+local function onFocusLost(enterPressed, inputObject)
+	if enterPressed then
+		local guess = textBox.Text
+		if guess == secretWord then
+			textBox.BackgroundColor3 = colorCorrect
+			wait(0.5)
+			textBox.BackgroundColor3 = colorNormal
+			wait(0.5)
+			textBox.BackgroundColor3 = colorCorrect
+			wait(0.5)
+			textBox.BackgroundColor3 = colorNormal
+			wait(0.5)
+			textBox.BackgroundColor3 = colorCorrect
+			wait(0.5)
+			textBox.BackgroundColor3 = colorNormal
+			wait(0.5)
+			Frame.Visible=false
+		else
+			textBox.BackgroundColor3 = colorWrong
+			wait(1)
+			Frame.Visible = false
+		end
+	else
+		textBox.BackgroundColor3 = colorNormal
+	end
+end
+textBox.FocusLost:Connect(onFocusLost)
+
